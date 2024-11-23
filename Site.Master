@@ -1,0 +1,49 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebFormsApp.SiteMaster" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title><%: Page.Title %></title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <div class="container">
+            <header>
+                <asp:LoginView runat="server">
+                    <LoggedInTemplate>
+                        歡迎, <asp:LoginName runat="server" />! 
+                        <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutPageUrl="~/" />
+                    </LoggedInTemplate>
+                    <AnonymousTemplate>
+                        <asp:LoginStatus runat="server" />
+                    </AnonymousTemplate>
+                </asp:LoginView>
+            </header>
+
+            <nav class="nav-menu">
+                <asp:Menu ID="MainMenu" runat="server" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem Text="首頁" NavigateUrl="~/Default.aspx" />
+                        <asp:MenuItem Text="披薩菜單" NavigateUrl="~/Menu.aspx" />
+                        <asp:MenuItem Text="購物車" NavigateUrl="~/Cart.aspx" />
+                        <asp:MenuItem Text="會員專區" NavigateUrl="~/Member/Dashboard.aspx" />
+                        <asp:MenuItem Text="披薩管理" NavigateUrl="~/Admin/PizzaManagement.aspx" />
+                    </Items>
+                </asp:Menu>
+            </nav>
+
+            <main>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </main>
+
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - 我的網站</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html> 
